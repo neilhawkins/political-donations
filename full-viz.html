@@ -1,0 +1,483 @@
+<!doctype html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Who's funding the big three?</title>
+    <meta property="og:image" content="http://isthisjam.com.s3.amazonaws.com/img/bubble-img.png" />
+    <!-- 180x110 Image for Linkedin -->
+    <meta property="og:image:width" content="180" />
+    <meta property="og:image:height" content="110" />
+    <meta property="og:image" content="http://isthisjam.com.s3.amazonaws.com/img/bubble-img.png" />
+    <!-- 200x200 Image for Facebook -->
+    <meta property="og:image:width" content="200" />
+    <meta property="og:image:height" content="200" />
+    <style>
+    @import url(//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300);
+    @import url(//fonts.googleapis.com/css?family=Raleway:400,300,600,700);
+    body {
+        background-color: #ffffff;
+        font-family:'Raleway', 'Open Sans', sans-serif;
+        line-height: 1.5;
+    }
+    p {
+        margin: 5px 0;
+    }
+    h1, h2, h3, h4, h5 {
+        margin: 10px 0;
+    }
+    #chart-nav {
+        min-width: 767px;
+        text-align: center;
+    }
+    circle {
+        stroke: rgba(238, 238, 238, 1);
+        stroke-width: 0.5;
+    }
+    circle.active {
+        stroke: rgba(17, 17, 17, 0.8);
+        stroke-width: 5;
+    }
+    #title {
+        text-align: center;
+    }
+    /* 	Information boxes for different chart layouts */
+    #infoBox {
+        line-height: 1.2;
+    }
+    /* Blurbs */
+    #initContent {
+        padding-top: 100px;
+        height: 100%;
+        position: absolute;
+        left: 650px;
+        width: 400px;
+    }
+    #values {
+        opacity: 0.5;
+        font-size: 0.75em;
+        font-weight: 700;
+    }
+    #a {
+        position: absolute;
+        left: 40px;
+        top: 635px;
+    }
+    #b {
+        position: absolute;
+        left: 40px;
+        top: 585px;
+    }
+    #c {
+        position: absolute;
+        left: 40px;
+        top: 535px;
+    }
+    #d {
+        position: absolute;
+        left: 40px;
+        top: 485px;
+    }
+    #e {
+        position: absolute;
+        left: 40px;
+        top: 435px;
+    }
+    #f {
+        position: absolute;
+        left: 575px;
+        top: 648px;
+        font-weight: 400;
+    }
+    /* 	Party layout */
+    .bold {
+        font-weight: 700;
+    }
+    .top10 {
+        margin-top: 0.5em;
+    }
+    #party {
+        height: 100%;
+        position: absolute;
+        left: 750px;
+        width: 300px;
+        display: none;
+    }
+    #partyInfo {
+        position: absolute;
+        top: 40px;
+    }
+    #tory {
+        padding: 5px;
+        background: rgba(8, 127, 189, 0.2);
+        position: absolute;
+        top: 110px;
+    }
+    #labour {
+        padding: 5px;
+        background: rgba(240, 34, 51, 0.2);
+        position: absolute;
+        top: 330px;
+    }
+    #libdem {
+        padding: 5px;
+        background: rgba(253, 187, 48, 0.2);
+        position: absolute;
+        top: 550px;
+    }
+    /*	Donor type layout */
+    #donor {
+        height: 100%;
+        position: absolute;
+        left: 500px;
+        width: 370px;
+        display: none;
+    }
+    #individual {
+        position: absolute;
+        top: 55px;
+    }
+    #company {
+        position: absolute;
+        top: 390px;
+    }
+    #union {
+        position: absolute;
+        top: 660px;
+    }
+    #society {
+        position: absolute;
+        top: 205px;
+        text-align: right;
+        right: 0;
+    }
+    #other {
+        position: absolute;
+        top: 530px;
+        text-align: right;
+        right: 0
+    }
+    /*	Public or private funds layout */
+    #publicOrPrivateInfo {
+        top: 145px;
+        position: absolute;
+        left: 600px;
+        max-width: 300px;
+        display: none;
+    }
+    #publicOrPrivate {
+        width: 100%;
+        top: 750px;
+        position: absolute;
+        left: 0;
+        height: 200px;
+        text-align: center;
+        display: none;
+    }
+    #private {
+        left: 200px;
+        position: absolute;
+    }
+    #public {
+        left: 650px;
+        position: absolute;
+    }
+    /* End of layouts */
+    .legend circle {
+        stroke: #aabbcc;
+        stroke-width: 1;
+        fill: none;
+    }
+    .tooltip {
+        margin: 0;
+        padding: 5px;
+        line-height: 1.4;
+        display: none;
+        height: 125px;
+        width: 280px;
+        text-align: left;
+        border: 4px solid rgba(0, 0, 0, .8);
+        border-radius: 2px;
+        -moz-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5);
+        box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5);
+        background-color: rgba(255, 255, 255, 1);
+        position: absolute;
+    }
+    .tooltip p, h3 {
+        margin: 0.2em;
+    }
+    .lab {
+        fill: #F02233;
+    }
+    .lib {
+        fill: #FDBB30;
+    }
+    .con {
+        fill: #087FBD;
+    }
+    .snp {
+        fill: #C9C945;
+    }
+    /*!
+Pure v0.2.1
+Copyright 2013 Yahoo! Inc. All rights reserved.
+Licensed under the BSD License.
+https://github.com/yui/pure/blob/master/LICENSE.md
+*/
+    .pure-button {
+        /* Structure */
+        display: inline-block;
+        *display: inline;
+        /*IE 6/7*/
+        zoom: 1;
+        line-height: normal;
+        white-space: nowrap;
+        vertical-align: baseline;
+        text-align: center;
+        cursor: pointer;
+        -webkit-user-drag: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    /* Firefox: Get rid of the inner focus border */
+    .pure-button::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+    }
+    /*csslint unqualified-attributes:false, outline-none:false*/
+    .pure-button {
+        font-size: 100%;
+        *font-size: 90%;
+        /*IE 6/7 - To reduce IE's oversized button text*/
+        *overflow: visible;
+        /*IE 6/7 - Because of IE's overly large left/right padding on buttons */
+        padding: 0.5em 1.5em 0.5em;
+        color: #444;
+        /* rgba not supported (IE 8) */
+        color: rgba(0, 0, 0, 0.80);
+        /* rgba supported */
+        *color: #444;
+        /* IE 6 & 7 */
+        border: 1px solid #999;
+        /*IE 6/7/8*/
+        border: none rgba(0, 0, 0, 0);
+        /*IE9 + everything else*/
+        background-color: #E6E6E6;
+        text-decoration: none;
+        border-radius: 2px;
+        -webkit-font-smoothing: antialiased;
+        /* Transitions */
+        -webkit-transition: 0.1s linear -webkit-box-shadow;
+        -moz-transition: 0.1s linear -moz-box-shadow;
+        -ms-transition: 0.1s linear box-shadow;
+        -o-transition: 0.1s linear box-shadow;
+        transition: 0.1s linear box-shadow;
+    }
+    .pure-button-hover, .pure-button:hover, .pure-button:focus {
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#1a000000', GradientType=0);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(40%, rgba(0, 0, 0, 0.05)), to(rgba(0, 0, 0, 0.10)));
+        background-image: -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.10));
+        background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.10));
+        background-image: -ms-linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.10));
+        background-image: -o-linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.10));
+        background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.10));
+    }
+    .pure-button:focus {
+        outline: 0;
+    }
+    .pure-button-active, .pure-button:active {
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.20) inset;
+    }
+    .pure-button[disabled], .pure-button-disabled, .pure-button-disabled:hover, .pure-button-disabled:focus, .pure-button-disabled:active {
+        border: none;
+        background-image: none;
+        filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+        filter: alpha(opacity=40);
+        -khtml-opacity: 0.40;
+        -moz-opacity: 0.40;
+        opacity: 0.40;
+        cursor: not-allowed;
+        box-shadow: none;
+    }
+    .pure-button-hidden {
+        display: none;
+    }
+    /* Firefox: Get rid of the inner focus border */
+    .pure-button::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+    }
+    .pure-button-primary, .pure-button-selected, a.pure-button-primary, a.pure-button-selected {
+        background-color: rgb(0, 120, 231);
+        color: #fff;
+    }
+    </style>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-44807543-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</head>
+
+<body>
+
+    <div id="chart">
+        <div id="title">
+            <h1>Who's funding the big three?</h1>
+        </div>
+        <div id="chart-nav">
+            <a href="#" id="total" class="pure-button switch">All money</a>
+            <a href="#" id="fundsType" class="pure-button switch">The public's purse</a>
+            <a href="#" id="partyGroup" class="pure-button switch">Split by party</a>
+            <a href="#" id="donorType" class="pure-button switch">Split by type of donor</a>
+        </div>
+
+        <div id="infoBox">
+            <div id="initContent">
+                <h2>Political donations and funding accepted by the Conservatives, Labour and Liberal Democrats since the 2010 general election.</h2>
+                <p>Each circle represents the total amount donated by a single donor group, funding organisation or individual since the general election in 2010.</p>
+                <p>Hover over a node to show further information.</p>
+                <p>Get an immediate overview of how party funding is shaped in Britain today by selecting one of the options at the top of the page.</p>
+                <p>Data is based on all reportable donations over &#163;7500.</p>
+                <p>Data source: <a href="http://www.electoralcommission.org.uk/">The Electoral Commission.</a>
+                </p>
+            </div>
+            <div id="values">
+                <div id="f">&#8212; UK average salary</div>
+                <div id="a">&#163;25k &#8212;</div>
+                <div id="b">&#163;50k &#8212;</div>
+                <div id="c">&#163;100k &#8212;</div>
+                <div id="d">&#163;500k &#8212;</div>
+                <div id="e">&#163;1m &#8212;</div>
+            </div>
+            <div id="party">
+                <div id="partyInfo">
+                    <h3>Income for each party from private sources.</h3>
+                    <p></p>
+                </div>
+                <div id="tory">
+                    <h5>Conservative Party</h5>
+                    <b>Total: &#163;43.7 million</b>
+                    <p class="top10">Top 50 donors gave:
+                        <span class="bold">&#163;23,329,828</span>
+                    </p>
+                    <p>
+                        <span class="bold">50%</span>of the total.</p>
+                    <p class="top10">Top 10 donors gave:
+                        <span class="bold">&#163;12,877,989</span>
+                    </p>
+                    <p>
+                        <span class="bold">27%</span>of the total</p>
+                </div>
+                <div id="labour">
+                    <h5>Labour Party</h5>
+                    <b>Total: &#163;38.9 million</b>
+                    <p class="top10">Top 50 donors gave:
+                        <span class="bold">&#163;39,196,684</span>
+                    </p>
+                    <p>
+                        <span class="bold">92%</span>of the total.</p>
+                    <p class="top10">Top 10 donors gave:
+                        <span class="bold">&#163;34,715,877</span>
+                    </p>
+                    <p>
+                        <span class="bold">81%</span>of the total</p>
+                </div>
+                <div id="libdem">
+                    <h5>Liberal Democrats</h5>
+                    <b>Total: &#163;7.1 million</b>
+                    <p class="top10">Top 50 donors gave:
+                        <span class="bold">&#163;6,975,973</span>
+                    </p>
+                    <p>
+                        <span class="bold">63%</span>of the total.</p>
+                    <p class="top10">Top 10 donors gave:
+                        <span class="bold">&#163;4,823,899.71</span>
+                    </p>
+                    <p>
+                        <span class="bold">43%</span>of the total</p>
+                </div>
+            </div>
+            <div id="donor">
+                <div id="individual">
+                    <h5>Individuals</h5>
+                    <b>Total: &#163; 35,191,222</b>
+                    <p>Proportion of all donations:
+                        <span class="bold">39%</span>
+                    </p>
+                </div>
+                <div id="company">
+                    <h5>Companies</h5>
+                    <b>Total: &#163; 17,052,129</b>
+                    <p>Proportion of all donations:
+                        <span class="bold">19%</span>
+                    </p>
+                </div>
+                <div id="union">
+                    <h5>Trade Unions</h5>
+                    <b>Total: &#163;31,474,649</b>
+                    <p>Proportion of all donations:
+                        <span class="bold">35%</span>
+                    </p>
+                </div>
+                <div id="society">
+                    <h5>Societies</h5>
+                    <b>Total: &#163;4,550,129</b>
+                    <p>Proportion of all donations:
+                        <span class="bold">5%</span>
+                    </p>
+                </div>
+                <div id="other">
+                    <h5>Others</h5>
+                    <b>Total: &#163; 1,484,395</b>
+                    <p>Proportion of all donations:
+                        <span class="bold">2%</span>
+                    </p>
+                </div>
+            </div>
+            <div id="publicOrPrivateInfo" class="pubOrPri">
+                <p>Despite general public opposition to more taxpayer money being given to parties, public funds are already provided to opposition parties in the form of 'short money' from the House of Commons, House of Lords and Scottish Parliament.</p>
+                <p>The parties also benefit from 'Policy development grants' given by the Electoral Commission.</p>
+            </div>
+            <div id="publicOrPrivate" class="pubOrPri">
+                <div id="private">
+                    <h5>Private Donations</h5>
+                    <b>Total: &#163;89,752,524</b>
+                    <p>Proportion of all donations:
+                        <span class="bold">77%</span>
+                    </p>
+                </div>
+                <div id="public">
+                    <h5>Public Funds</h5>
+                    <b>Total: &#163;26,579,038</b>
+                    <p>Proportion of all donations:
+                        <span class="bold">23%</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+    window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.2.2/d3.v3.min.js" charset="utf-8"></script>
+    <script src="chart.js"></script>
+</body>
+
+</html>
