@@ -1,5 +1,4 @@
 body {
-    fon
     background-color: #ffffff;
     font-family:'Raleway', 'Open Sans', sans-serif;
 }
@@ -22,38 +21,23 @@ li {
 
 /* 	Information boxes for different chart layouts */
 /* Positioning */
-#initial-content, #a, #b, #c, #d, #e, #f, #party, #partyInfo, #tory, #labour, #libdem, #donor, #individual, #company, #union, #society, #other, #public-or-private-money, #public-or-private-money-split, #private-money, #public-money { position: absolute; }
+#initial-content, #a, #b, #c, #d, #e, #f, #view-party-type, #view-donor-type, #view-source-type, #partyInfo, #tory, #labour, #libdem, #individual, #company, #union, #society, #other, #public-or-private-money, #public-or-private-money-split, #private-money, #public-money { position: absolute; }
 
 /* Initial appearance on load */
-#party, #donor, #source {display: none;}
+#view-party-type, #view-donor-type, #view-source-type {display: none;}
 
 #initial-content {
     margin-top: 100px;
     left: 650px;
     width: 400px;
 }
-/* Value scale */
-#value-scale {
-    opacity: 0.5;
-    font-size: 0.75em;
-}
-#a, #b, #c, #d, #e { left: 40px; }
-#a { top: 635px;}
-#b { top: 585px;}
-#c { top: 535px;}
-#d { top: 485px;}
-#e { top: 435px;}
-#f { top: 648px; left: 575px; }
 
 /* 	Party layout */
 
-#party {
+#view-party-type {
     left: 750px;
     width: 300px;
     
-}
-#partyInfo {
-    top: 40px;
 }
 
 #tory, #labour, #libdem { padding: 10px; }
@@ -72,7 +56,7 @@ li {
 
 
 /*	Donor type layout */
-#donor {
+#view-donor-type {
     height: 100%;
     left: 500px;
     width: 370px;
@@ -97,20 +81,23 @@ li {
     text-align: right;
     right: 0
 }
-/*	Public or private funds layout */
+/*	Public or private funds view */
+
+#view-source-type {
+    width: 100%;
+    height: 100%;
+}
 #public-or-private-money {
     top: 145px;
     left: 600px;
     max-width: 300px;
-    
 }
 #public-or-private-money-split {
     width: 100%;
     top: 750px;
     left: 0;
     height: 200px;
-    text-align: center;
-    
+    text-align: center;   
 }
 #private-money {
     left: 200px;
@@ -118,7 +105,22 @@ li {
 #public-money {
     left: 650px;
 }
-/* End of layouts */
+
+/* Value scale */
+
+#value-scale {
+    opacity: 0.5;
+    font-size: 0.75em;
+}
+#a, #b, #c, #d, #e { left: 40px; }
+#a { top: 635px;}
+#b { top: 585px;}
+#c { top: 535px;}
+#d { top: 485px;}
+#e { top: 435px;}
+#f { top: 648px; left: 575px; }
+
+/* End of view */
 
 circle {
     stroke: rgba(238, 238, 238, 1);
@@ -235,6 +237,6 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     outline: 0;
 }
 .pure-button-active, .pure-button:active {
-    olor: rgb(0, 120, 231);
+    color: rgb(0, 120, 231);
     color: #fff
 }
