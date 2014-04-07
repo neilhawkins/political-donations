@@ -42,37 +42,37 @@ var tooltip = d3.select("#chart")
 var comma = d3.format(",.0f");
 
 function transition(name) {
-	if (name === "total") {
+	if (name === "all-donations") {
 		$("#initial-content").fadeIn(250);
 		$("#value-scale").fadeIn(1000);
 		$("#donor").fadeOut(250);
-		$(".public-private").fadeOut(250);
+		$("#source").fadeOut(250);
 		$("#party").fadeOut(250);
 		return total();
 		//location.reload();
 	}
-	if (name === "partyGroup") {
+	if (name === "group-by-party") {
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#donor").fadeOut(250);
-		$(".public-private").fadeOut(250);
+		$("#source").fadeOut(250);
 		$("#party").fadeIn(1000);
 		return partyGroup();
 	}
-	if (name === "donorType") {
+	if (name === "group-by-donor-type") {
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#party").fadeOut(250);
-		$(".public-private").fadeOut(250);
+		$("#source").fadeOut(250);
 		$("#donor").fadeIn(1000);
 		return donorType();
 	}
-	if (name === "fundsType")
+	if (name === "group-by-money-source")
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#donor").fadeOut(250);
 		$("#party").fadeOut(250);
-		$(".public-private").fadeIn(1000);
+		$("#source").fadeIn(1000);
 		return fundsType();
 	}
 

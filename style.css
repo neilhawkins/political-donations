@@ -1,4 +1,5 @@
 body {
+    fon
     background-color: #ffffff;
     font-family:'Raleway', 'Open Sans', sans-serif;
 }
@@ -13,120 +14,85 @@ h1, h2, h3, h4, h5 {
 }
 header, nav {
     text-align: center;
-}
-nav {
     min-width: 767px;
 }
-nav li {
+li {
     display: inline;
 }
 
 /* 	Information boxes for different chart layouts */
+/* Positioning */
+#initial-content, #a, #b, #c, #d, #e, #f, #party, #partyInfo, #tory, #labour, #libdem, #donor, #individual, #company, #union, #society, #other, #public-or-private-money, #public-or-private-money-split, #private-money, #public-money { position: absolute; }
+
+/* Initial appearance on load */
+#party, #donor, #source {display: none;}
 
 #initial-content {
-    padding-top: 100px;
-    height: 100%;
-    position: absolute;
+    margin-top: 100px;
     left: 650px;
     width: 400px;
 }
+/* Value scale */
 #value-scale {
     opacity: 0.5;
     font-size: 0.75em;
-    font-weight: 700;
 }
-#a {
-    position: absolute;
-    left: 40px;
-    top: 635px;
-}
-#b {
-    position: absolute;
-    left: 40px;
-    top: 585px;
-}
-#c {
-    position: absolute;
-    left: 40px;
-    top: 535px;
-}
-#d {
-    position: absolute;
-    left: 40px;
-    top: 485px;
-}
-#e {
-    position: absolute;
-    left: 40px;
-    top: 435px;
-}
-#f {
-    position: absolute;
-    left: 575px;
-    top: 648px;
-    font-weight: 400;
-}
+#a, #b, #c, #d, #e { left: 40px; }
+#a { top: 635px;}
+#b { top: 585px;}
+#c { top: 535px;}
+#d { top: 485px;}
+#e { top: 435px;}
+#f { top: 648px; left: 575px; }
+
 /* 	Party layout */
-.top10 {
-    margin-top: 0.5em;
-}
+
 #party {
-    height: 100%;
-    position: absolute;
     left: 750px;
     width: 300px;
-    display: none;
+    
 }
 #partyInfo {
-    position: absolute;
     top: 40px;
 }
+
+#tory, #labour, #libdem { padding: 10px; }
 #tory {
-    padding: 5px;
     background: rgba(8, 127, 189, 0.2);
-    position: absolute;
     top: 110px;
 }
 #labour {
-    padding: 5px;
     background: rgba(240, 34, 51, 0.2);
-    position: absolute;
     top: 330px;
 }
 #libdem {
-    padding: 5px;
     background: rgba(253, 187, 48, 0.2);
-    position: absolute;
     top: 550px;
 }
+
+
 /*	Donor type layout */
 #donor {
     height: 100%;
-    position: absolute;
     left: 500px;
     width: 370px;
-    display: none;
+    
 }
 #individual {
-    position: absolute;
     top: 55px;
 }
 #company {
-    position: absolute;
     top: 390px;
 }
 #union {
-    position: absolute;
     top: 660px;
 }
 #society {
-    position: absolute;
     top: 205px;
     text-align: right;
     right: 0;
 }
 #other {
-    position: absolute;
     top: 530px;
     text-align: right;
     right: 0
@@ -134,27 +100,23 @@ nav li {
 /*	Public or private funds layout */
 #public-or-private-money {
     top: 145px;
-    position: absolute;
     left: 600px;
     max-width: 300px;
-    display: none;
+    
 }
 #public-or-private-money-split {
     width: 100%;
     top: 750px;
-    position: absolute;
     left: 0;
     height: 200px;
     text-align: center;
-    display: none;
+    
 }
 #private-money {
     left: 200px;
-    position: absolute;
 }
 #public-money {
     left: 650px;
-    position: absolute;
 }
 /* End of layouts */
 
@@ -275,3 +237,4 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 .pure-button-active, .pure-button:active {
     olor: rgb(0, 120, 231);
     color: #fff
+}
