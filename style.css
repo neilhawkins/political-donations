@@ -1,42 +1,36 @@
 body {
     background-color: #ffffff;
     font-family:'Raleway', 'Open Sans', sans-serif;
-    line-height: 1.5;
 }
 p {
     margin: 5px 0;
 }
+strong {
+    font-weight: 700;
+}
 h1, h2, h3, h4, h5 {
     margin: 10px 0;
 }
-#chart-nav {
+header, nav {
+    text-align: center;
+}
+nav {
     min-width: 767px;
-    text-align: center;
 }
-circle {
-    stroke: rgba(238, 238, 238, 1);
-    stroke-width: 0.5;
+nav li {
+    display: inline;
 }
-circle.active {
-    stroke: rgba(17, 17, 17, 0.8);
-    stroke-width: 5;
-}
-#title {
-    text-align: center;
-}
+
 /* 	Information boxes for different chart layouts */
-#infoBox {
-    line-height: 1.2;
-}
-/* Blurbs */
-#initContent {
+
+#initial-content {
     padding-top: 100px;
     height: 100%;
     position: absolute;
     left: 650px;
     width: 400px;
 }
-#values {
+#value-scale {
     opacity: 0.5;
     font-size: 0.75em;
     font-weight: 700;
@@ -73,9 +67,6 @@ circle.active {
     font-weight: 400;
 }
 /* 	Party layout */
-.bold {
-    font-weight: 700;
-}
 .top10 {
     margin-top: 0.5em;
 }
@@ -141,14 +132,14 @@ circle.active {
     right: 0
 }
 /*	Public or private funds layout */
-#publicOrPrivateInfo {
+#public-or-private-money {
     top: 145px;
     position: absolute;
     left: 600px;
     max-width: 300px;
     display: none;
 }
-#publicOrPrivate {
+#public-or-private-money-split {
     width: 100%;
     top: 750px;
     position: absolute;
@@ -157,15 +148,25 @@ circle.active {
     text-align: center;
     display: none;
 }
-#private {
+#private-money {
     left: 200px;
     position: absolute;
 }
-#public {
+#public-money {
     left: 650px;
     position: absolute;
 }
 /* End of layouts */
+
+circle {
+    stroke: rgba(238, 238, 238, 1);
+    stroke-width: 0.5;
+}
+circle.active {
+    stroke: rgba(17, 17, 17, 0.8);
+    stroke-width: 5;
+}
+
 .legend circle {
     stroke: #aabbcc;
     stroke-width: 1;
@@ -272,28 +273,5 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     outline: 0;
 }
 .pure-button-active, .pure-button:active {
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(0, 0, 0, 0.20) inset;
-}
-.pure-button[disabled], .pure-button-disabled, .pure-button-disabled:hover, .pure-button-disabled:focus, .pure-button-disabled:active {
-    border: none;
-    background-image: none;
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-    filter: alpha(opacity=40);
-    -khtml-opacity: 0.40;
-    -moz-opacity: 0.40;
-    opacity: 0.40;
-    cursor: not-allowed;
-    box-shadow: none;
-}
-.pure-button-hidden {
-    display: none;
-}
-/* Firefox: Get rid of the inner focus border */
-.pure-button::-moz-focus-inner {
-    padding: 0;
-    border: 0;
-}
-.pure-button-primary, .pure-button-selected, a.pure-button-primary, a.pure-button-selected {
-    background-color: rgb(0, 120, 231);
-    color: #fff;
-}
+    olor: rgb(0, 120, 231);
+    color: #fff

@@ -43,36 +43,36 @@ var comma = d3.format(",.0f");
 
 function transition(name) {
 	if (name === "total") {
-		$("#initContent").fadeIn(250);
-		$("#values").fadeIn(1000);
+		$("#initial-content").fadeIn(250);
+		$("#value-scale").fadeIn(1000);
 		$("#donor").fadeOut(250);
-		$(".pubOrPri").fadeOut(250);
+		$(".public-private").fadeOut(250);
 		$("#party").fadeOut(250);
 		return total();
 		//location.reload();
 	}
 	if (name === "partyGroup") {
-		$("#initContent").fadeOut(250);
-		$("#values").fadeOut(250);
+		$("#initial-content").fadeOut(250);
+		$("#value-scale").fadeOut(250);
 		$("#donor").fadeOut(250);
-		$(".pubOrPri").fadeOut(250);
+		$(".public-private").fadeOut(250);
 		$("#party").fadeIn(1000);
 		return partyGroup();
 	}
 	if (name === "donorType") {
-		$("#initContent").fadeOut(250);
-		$("#values").fadeOut(250);
+		$("#initial-content").fadeOut(250);
+		$("#value-scale").fadeOut(250);
 		$("#party").fadeOut(250);
-		$(".pubOrPri").fadeOut(250);
+		$(".public-private").fadeOut(250);
 		$("#donor").fadeIn(1000);
 		return donorType();
 	}
 	if (name === "fundsType")
-		$("#initContent").fadeOut(250);
-		$("#values").fadeOut(250);
+		$("#initial-content").fadeOut(250);
+		$("#value-scale").fadeOut(250);
 		$("#donor").fadeOut(250);
 		$("#party").fadeOut(250);
-		$(".pubOrPri").fadeIn(1000);
+		$(".public-private").fadeIn(1000);
 		return fundsType();
 	}
 
