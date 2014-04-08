@@ -7,9 +7,9 @@ var brake = 0.2;
 var radius = d3.scale.sqrt().range([10, 20]);
 
 var partyCentres = { 
-    con: { x: w / 3.6, y: h / 3.3}, 
-    lab: {x: w / 3.6, y: h / 2.3}, 
-    lib: {x: w / 3.6	, y: h / 1.8}
+    con: { x: w / 3, y: h / 3.3}, 
+    lab: {x: w / 3, y: h / 2.3}, 
+    lib: {x: w / 3	, y: h / 1.8}
   };
 
 var entityCentres = { 
@@ -199,7 +199,7 @@ function moveToCentre(alpha) {
 
 function moveToParties(alpha) {
 	return function(d) {
-		var centreX = partyCentres[d.party].x + 200;
+		var centreX = partyCentres[d.party].x + 50;
 		if (d.entity === 'pub') {
 			centreX = 1200;
 		} else {
@@ -230,11 +230,11 @@ function moveToFunds(alpha) {
 		var centreY = entityCentres[d.entity].y;
 		var centreX = entityCentres[d.entity].x;
 		if (d.entity !== 'pub') {
-			centreY = 350;
+			centreY = 300;
 			centreX = 350;
 		} else {
-			centreX = entityCentres[d.entity].x + 50;
-			centreY = 400;
+			centreX = entityCentres[d.entity].x + 60;
+			centreY = 380;
 		}
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
